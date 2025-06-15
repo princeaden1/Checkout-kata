@@ -1,0 +1,12 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: checkout-system
+
+# logging:
+#   level:
+#     com.cdl.checkout: INFO
+#     org.springframework: WARN
+#     root: WARN

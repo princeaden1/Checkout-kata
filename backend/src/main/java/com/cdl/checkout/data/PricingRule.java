@@ -1,4 +1,4 @@
-package com.cdl.checkout.dto;
+package com.cdl.checkout.data;
 
 public class PricingRule {
     public String sku;

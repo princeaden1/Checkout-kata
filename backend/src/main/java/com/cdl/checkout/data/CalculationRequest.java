@@ -1,19 +1,19 @@
-package com.cdl.checkout.dto;
+package com.cdl.checkout.data;
 
 import java.util.List;
 
 public class CalculationRequest {
-    private List<BasketItem> items;
+    private List<Basket> items;
     private List<PricingRule> pricingRules;
 
     public CalculationRequest() {
     }
 
-    public List<BasketItem> getItems() {
+    public List<Basket> getItems() {
         return items;
     }
 
-    public void setItems(List<BasketItem> items) {
+    public void setItems(List<Basket> items) {
         this.items = items;
     }
 

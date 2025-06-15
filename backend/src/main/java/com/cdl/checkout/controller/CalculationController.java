@@ -1,7 +1,7 @@
 package com.cdl.checkout.controller;
 
-import com.cdl.checkout.dto.CalculationRequest;
-import com.cdl.checkout.dto.CalculationResponse;
+import com.cdl.checkout.data.CalculationRequest;
+import com.cdl.checkout.data.CalculationResponse;
 import com.cdl.checkout.service.CalculationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

@@ -1,17 +1,17 @@
-package com.cdl.checkout.dto;
+package com.cdl.checkout.data;
 
 
 /**
  * Data Transfer Object representing an item in the shopping basket
  */
-public class BasketItem {
+public class Basket {
     public String sku;
     private int quantity;
 
-    public BasketItem() {
+    public Basket() {
     }
 
-    public BasketItem(String sku, int quantity) {
+    public Basket(String sku, int quantity) {
         this.sku = sku;
         this.quantity = quantity;
     }

@@ -1,6 +1,6 @@
 # 🛒 Checkout System 
 
-An enterprise-grade checkout system with pricing rules and special offers, built with React (Frontend) and Java Spring Boot (Backend).
+A checkout system with pricing rules and special offers, built with React (Frontend) and Java Spring Boot (Backend).
 
 ## 📋 Features
 
@@ -11,16 +11,6 @@ An enterprise-grade checkout system with pricing rules and special offers, built
 - ✅ **Error Handling**: Graceful fallback if backend is unavailable
 - ✅ **RESTful API**: Clean Spring Boot backend with proper validation
 
-## 🚀 Getting Started
-
-### Prerequisites
-
-Make sure you have the following installed:
-
-- **Java 17** or higher
-- **Node.js 18** or higher
-- **npm** or **yarn**
-- **Maven** (or use the included Maven wrapper)
 
 ### 📦 Installation & Setup
 
@@ -54,7 +44,7 @@ Tomcat started on port(s): 8080
 
 ```bash
 # Navigate to frontend directory
-cd frontend
+cd front-end
 
 # Install dependencies
 npm install

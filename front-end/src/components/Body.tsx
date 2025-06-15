@@ -82,7 +82,7 @@ function Body() {
     };
   };
 
-  // Calculate totals using backend - IMPROVED VERSION
+  // Calculate totals using backend - NO FALLBACK VERSION
   const calculateTotalsBackend = async (
     items: BasketItem[]
   ): Promise<CheckoutResult> => {
@@ -128,8 +128,13 @@ function Body() {
         error instanceof Error ? error.message : "Backend connection failed"
       );
 
-      // Fallback to frontend calculation
-      return calculateTotalsFrontend(items);
+      // Return empty/error state instead of fallback
+      return {
+        subtotal: 0,
+        discount: 0,
+        total: 0,
+        items: [],
+      };
     }
   };
 
@@ -430,35 +435,50 @@ function Body() {
               )}
             </div>
 
-            <div className="bg-gradient-to-r from-gray-50 to-white rounded-xl space-y-4">
-              <div className="flex justify-between items-center text-gray-700 text-xs">
-                <span className="font-medium">Subtotal:</span>
-                <span className="font-bold">
-                  {formatPrice(checkoutResult.subtotal)}
-                </span>
+            {apiError && useBackend ? (
+              <div className="bg-red-100 border border-red-200 rounded-xl p-6 text-center">
+                <div className="text-red-600 font-bold text-lg mb-2">
+                  ⚠️ Backend Not Reachable
+                </div>
+                <p className="text-red-700 text-sm mb-4">{apiError}</p>
+                <button
+                  onClick={() => setUseBackend(false)}
+                  className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors"
+                >
+                  Switch to Frontend Calculation
+                </button>
               </div>
-              {checkoutResult.discount > 0 && (
-                <div className="flex bg-green-400 border border-green-200 rounded-lg p-2 justify-between items-center text-white text-xs">
-                  <span className="font-medium flex items-center">
-                    <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
-                    Total Discount:
-                  </span>
+            ) : (
+              <div className="bg-gradient-to-r from-gray-50 to-white rounded-xl space-y-4">
+                <div className="flex justify-between items-center text-gray-700 text-xs">
+                  <span className="font-medium">Subtotal:</span>
                   <span className="font-bold">
-                    -{formatPrice(checkoutResult.discount)}
+                    {formatPrice(checkoutResult.subtotal)}
                   </span>
                 </div>
-              )}
-              <div className="border-t-2 border-gray-200">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm font-bold text-gray-900">
-                    Total:
-                  </span>
-                  <span className="text-sm font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
-                    {formatPrice(checkoutResult.total)}
-                  </span>
+                {checkoutResult.discount > 0 && (
+                  <div className="flex bg-green-400 border border-green-200 rounded-lg p-2 justify-between items-center text-white text-xs">
+                    <span className="font-medium flex items-center">
+                      <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                      Total Discount:
+                    </span>
+                    <span className="font-bold">
+                      -{formatPrice(checkoutResult.discount)}
+                    </span>
+                  </div>
+                )}
+                <div className="border-t-2 border-gray-200">
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm font-bold text-gray-900">
+                      Total:
+                    </span>
+                    <span className="text-sm font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+                      {formatPrice(checkoutResult.total)}
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
 
             <div className="flex items-center justify-between mt-6 pt-4 border-t border-gray-200">
               <button

@@ -1,16 +1,16 @@
-package com.cdl.checkout.dto;
+package com.cdl.checkout.data;
 
-public class ItemDetail {
+public class items {
     private String sku;
     private int quantity;
     private int unitPrice;
     private int lineTotal;
     private int discountApplied;
 
-    public ItemDetail() {
+    public items() {
     }
 
-    public ItemDetail(String sku, int quantity, int unitPrice, int lineTotal, int discountApplied) {
+    public items(String sku, int quantity, int unitPrice, int lineTotal, int discountApplied) {
         this.sku = sku;
         this.quantity = quantity;
         this.unitPrice = unitPrice;

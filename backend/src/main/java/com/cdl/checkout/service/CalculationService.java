@@ -1,7 +1,8 @@
 package com.cdl.checkout.service;
 
-import com.cdl.checkout.dto.*;
 import org.springframework.stereotype.Service;
+
+import com.cdl.checkout.data.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,10 +19,10 @@ public class CalculationService {
 
         int subtotal = 0;
         int totalDiscount = 0;
-        List<ItemDetail> itemDetails = new ArrayList<>();
+        List<items> itemDetails = new ArrayList<>();
 
         // Process each basket item
-        for (BasketItem item : request.getItems()) {
+        for (Basket item : request.getItems()) {
             PricingRule rule = pricingMap.get(item.sku);
             if (rule == null)
                 continue;
@@ -32,7 +33,7 @@ public class CalculationService {
             subtotal += calc.regularTotal;
             totalDiscount += calc.discountApplied;
 
-            itemDetails.add(new ItemDetail(
+            itemDetails.add(new items(
                     item.getSku(),
                     item.getQuantity(),
                     rule.getUnitPrice(),
@@ -45,7 +46,7 @@ public class CalculationService {
         return new CalculationResponse(subtotal, totalDiscount, finalTotal, itemDetails);
     }
 
-    private ItemCalculation calculateItemTotal(BasketItem item, PricingRule rule) {
+    private ItemCalculation calculateItemTotal(Basket item, PricingRule rule) {
         int regularTotal = item.getQuantity() * rule.getUnitPrice();
         int lineTotal = 0;
         int discountApplied = 0;

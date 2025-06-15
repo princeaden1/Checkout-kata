@@ -1,4 +1,4 @@
-package com.cdl.checkout.dto;
+package com.cdl.checkout.data;
 
 import java.util.List;
 
@@ -6,12 +6,12 @@ public class CalculationResponse {
     private int subtotal;
     private int discount;
     private int total;
-    private List<ItemDetail> items;
+    private List<items> items;
 
     public CalculationResponse() {
     }
 
-    public CalculationResponse(int subtotal, int discount, int total, List<ItemDetail> items) {
+    public CalculationResponse(int subtotal, int discount, int total, List<items> items) {
         this.subtotal = subtotal;
         this.discount = discount;
         this.total = total;
@@ -42,11 +42,11 @@ public class CalculationResponse {
         this.total = total;
     }
 
-    public List<ItemDetail> getItems() {
+    public List<items> getItems() {
         return items;
     }
 
-    public void setItems(List<ItemDetail> items) {
+    public void setItems(List<items> items) {
         this.items = items;
     }
 }
